@@ -1,0 +1,63 @@
+##
+#	Dots.MAMake
+#	
+#	Copyright ©1991-1992 Apple Computer, Inc.
+#	All rights reserved
+#
+#	Change History:
+#	
+##
+
+AppName = Dots
+
+OtherInterfaces =  ¶
+	"{SrcApp}UViewDots.h" ¶
+	"{SrcApp}UDefines.h" ¶
+	"{SrcApp}UApplicationDots.h"
+
+OtherLinkFiles = ¶
+	"{ObjApp}UGlobals.cp.o" ¶
+	"{ObjApp}UCommandDots.cp.o" ¶
+	"{ObjApp}UTrackerDots.cp.o" ¶
+	"{ObjApp}UViewDots.cp.o" ¶
+	"{ObjApp}UDocumentDots.cp.o" ¶
+	"{ObjApp}UApplicationDots.cp.o"
+
+"{ObjApp}UApplicationDots.cp.o"	Ä ¶
+							"{SrcApp}UApplicationDots.h" ¶
+							"{SrcApp}UDocumentDots.h" ¶
+							{MacAppIntf} ¶
+							{BuildingBlocksIntf}
+
+"{ObjApp}UDocumentDots.cp.o"	Ä ¶
+							"{SrcApp}UDocumentDots.h" ¶
+							"{SrcApp}UCommandDots.h" ¶
+							"{SrcApp}UViewDots.h" ¶
+							{MacAppIntf} ¶
+							{BuildingBlocksIntf}
+
+"{ObjApp}UViewDots.cp.o"	Ä ¶
+							"{SrcApp}UDefines.h" ¶
+							"{SrcApp}UViewDots.h" ¶
+							"{SrcApp}UDocumentDots.h" ¶
+							"{SrcApp}UTrackerDots.h" ¶
+							"{SrcApp}UGlobals.h" ¶
+							{MacAppIntf} ¶
+							{BuildingBlocksIntf}
+
+"{ObjApp}UCommandDots.cp.o"	Ä ¶
+							"{SrcApp}UCommandDots.h" ¶
+							"{SrcApp}UDocumentDots.h" ¶
+							{MacAppIntf} ¶
+							{BuildingBlocksIntf}
+
+"{ObjApp}UTrackerDots.cp.o"	Ä ¶
+							"{SrcApp}UTrackerDots.h" ¶
+							"{SrcApp}UDocumentDots.h" ¶
+							{MacAppIntf} ¶
+							{BuildingBlocksIntf}
+
+"{ObjApp}UGlobals.cp.o"	Ä ¶
+							"{SrcApp}UDefines.h" ¶
+							{MacAppIntf} ¶
+							{BuildingBlocksIntf}
