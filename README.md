@@ -1,6 +1,6 @@
 # Dots and Boxes
 
-A [Dots and Boxes](https://en.wikipedia.org/wiki/Dots_and_boxes) player by Jeff Mallett, written in Lightspeed Pascal for the Macintosh in 1986 and ported to C++ in 2001, when it won the [MacTech Magazine](https://en.wikipedia.org/wiki/MacTech) Programmer's Challenge.
+A [Dots and Boxes](https://en.wikipedia.org/wiki/Dots_and_boxes) engine by Jeff Mallett, written in Lightspeed Pascal for the Macintosh in 1986 and ported to C++ in 2001, when it won the [MacTech Magazine](https://en.wikipedia.org/wiki/MacTech) Programmer's Challenge.
 
 Players take turns drawing a line between two adjacent dots. Completing the fourth side of a box claims it and earns another turn, and the player with the most boxes wins.
 
@@ -30,15 +30,15 @@ P =0(00)+0(00) = 0        P = 1 (11)
    = Parity 1           = Parity 0
 ```
 
-This is one of the cases from Jeff's June 2001 notes ([`Dots.txt`](dots_code_2001-06-08/Dots.txt)) for the look-ahead code in `Zugzwang.cpp`. It shows two 1-boxes (`O`) joined to each other and to the rest of the board by 2-paths, and the parity that results from cutting (`#`) in each of two places.
+This is one of the cases from my June 2001 notes ([`Dots.txt`](dots_code_2001-06-08/Dots.txt)) for the look-ahead code in `Zugzwang.cpp`. It shows two 1-boxes (`O`) joined to each other and to the rest of the board by 2-paths, and the parity that results from cutting (`#`) in each of two places.
 
 ## History
 
 The git history follows the code from 1986 to 2001, one folder per stage:
 
 1. [`think_pascal_dots/`](think_pascal_dots/): the original game in Lightspeed Pascal (later THINK Pascal). `BoxesXI.pas` is dated November 6, 1986 and `BoxesXII.pas`, which adds a Quit box and a custom cursor, November 14, 1986.
-2. [`macapp_dots/`](macapp_dots/): an unfinished hand port to Apple's MacApp 3.0 C++ framework from around 1992. It draws the board but has no computer player. `PascalToCPlus.txt` is the MPW search-and-replace script used to start the conversion, and `Boxes Translate.pas` is its output.
-3. [`ptoc_dots/`](ptoc_dots/): the May 2001 machine translation. `Boxes.pas` is BoxesXII prepared for the PTOC Pascal-to-C translator, and `Boxes.cpp` and `Screen.cpp` are the translated engine and drawing code.
+2. [`macapp_dots/`](macapp_dots/): an unfinished hand port to Apple's MacApp 3.0 C++ framework from around 1992. It draws the board but has no computer player. `Boxes Translate.pas` is BoxesXII partway through a search-and-replace conversion to C, with operators such as `=` and `AND` changed to `==` and `&&`; that conversion was never finished.
+3. [`ptoc_dots/`](ptoc_dots/): the May 2001 machine translation from Pascal to C. `Boxes.pas` is BoxesXII prepared for the PTOC Pascal-to-C translator, and `Boxes.cpp` and `Screen.cpp` are the translated engine and drawing code.
 4. [`cdots/`](cdots/): a Visual C++ 6.0 MFC program used to run and develop the translated code on Windows, as of May 30, 2001. The `Boxes.cpp` and `Screen.cpp` it built were not saved in this folder.
 5. [`dots_code_2001-06-08/`](dots_code_2001-06-08/): the same Windows program on June 8, 2001, with the contest interface (`Dots.h`), notes on 2-path parity (`Dots.txt`), and `Zugzwang.cpp`, the look-ahead code taken out of the contest entry to save time.
 6. [`mactech/DotsChallenge/`](mactech/DotsChallenge/): the contest entry, a CodeWarrior project with `Boxes.cpp` (the engine) and `Screen.cpp` (drawing). It matches the code MacTech published, except that the cleanup in `TermDots` is commented out in this copy.
@@ -57,8 +57,6 @@ The [challenge](http://preserve.mactech.com/articles/mactech/Vol.17/17.06/Jun01C
 >
 > As the comments in Jeff's code indicate, his solution is actually based on 15-year-old code, translated from Pascal into C/C++ for the Challenge. Jeff mentions that the time penalty in the problem caused him to significantly "dumb down" the program, removing enough of the look-ahead code to make it a fast, if mediocre, player.
 >
-> The second-place entry, from Greg Sadetsky, is based (with permission) on a JavaScript program by UCLA Professor Thomas S. Ferguson. In addition to providing some very entertaining commentary that I wish we had the space to publish, Greg included the URL for the JavaScript code (http://www.stat.ucla.edu/~tom/Games/dots&boxes.html), as well as a page of links to other analyses of the game (http://dmoz.org/Games/Paper_and_Pencil/Dots_and_Boxes/).
->
 > The table below lists, for each of the solutions submitted, the number of cells captured by each solution in the tournament, the number of cells captured by the opposing player, the execution time in milliseconds, and the score earned by each solution (with lower scores being better). The table also includes the code and data size for each solution, and the programming language used. As usual, the number in parentheses after the entrant's name is the total number of Challenge points earned in all Challenges prior to this one.
 
 | Name | Player cells | Opponent cells | Time (msec) | Score | Code | Data | Lang |
@@ -70,6 +68,6 @@ The [challenge](http://preserve.mactech.com/articles/mactech/Vol.17/17.06/Jun01C
 | Randy Boring (142) | 668 | 3422 | 53118.1 | 145423.8 | 17676 | 498 | C |
 | T. R. | 1752 | 2297 | 367.1 | 2962.6 | 5188 | 307 | C++ |
 
-[`mactech/`](mactech/) also has the challenge as it was emailed to contestants (`Challenge.txt`), both articles saved as PDFs with `.webloc` links, and Bob Boonstra's test code (`2001_06_TestCode/`), whose `YourCode/` folder holds his sample random players.
+[`mactech/`](mactech/) also has the challenge as it was emailed to contestants (`Challenge.txt`), both articles saved as PDFs with links, and Bob Boonstra's test code (`2001_06_TestCode/`), whose `YourCode/` folder holds his sample random players.
 
 This is historical source. The Pascal targets Lightspeed/THINK Pascal and the Mac Toolbox, the MacApp port needs MPW and MacApp 3.0, the Windows programs need Visual C++ 6.0, and the contest entry needs CodeWarrior and the classic Mac OS. None of it is set up as a modern build.
