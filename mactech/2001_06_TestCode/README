@@ -1,0 +1,9 @@
+Dots README
+
+The final Dots evaluation code will be a round robin or other fair tournament.
+
+This test code allows you to play against your solution.
+
+After launching the app, you can set the problem size and decide whether you (the human you) plays first or second.  Then select New Game and play.  Repeat as desired.
+
+If you want to pit your solution against itself, replace the "Dots Human Player" shared library with another copy of your code, using the Dots2.h header file and renaming the visible routines in your solution with an "02" suffix.

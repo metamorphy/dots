@@ -1,0 +1,113 @@
+Enclosed is the Programmer's Challenge for June 2001.
+
+Mail solutions to:
+  <mailto:progchallenge@mactech.com>
+
+Due Date:  11:59PM, ET, 1 June 2001
+
+Test code will soon be available at:
+<ftp://ftp.windmillsw.com/Challenge/2001_06_TestCode.sit>
+
+-- Bob
+
+--------------------
+
+DOTS
+
+You have probably played the game Dots before, although perhaps not in quite some time. My memory of the game dates back to childhood, when we played it in the car while on some long trip. Greg Sadetsky suggested that Dots might make an interesting Challenge, and he wins two Challenge points for that suggestion.
+The game starts with a piece of paper containing a rectangular grid of NxN dots. The game proceeds with two players alternating turns connecting adjacent dots with a line. Two dots are adjacent if they are in the same row and in adjacent columns, or in the same column and in adjacent rows. The object of the game is to take possession of more squares than does your opponent. Each time a player connects dots that form the fourth edge of a square, the player takes possession of that square. A line can complete zero, one, or two squares. When a player completes one or more squares, s/he is entitled to make another move, and to continue making additional moves as long as a square is completed with each move. The game continues until every square has been formed.
+
+The prototype for the code you should write is:
+typedef struct Dot {
+  short row;  /* row number of dot, 0..boardSize-1 */
+  short col;  /* column number of dot, 0..boardSize-1 */
+} Dot;
+typedef struct DotLine {
+  Dot dot1;  /* first dot of a line */
+  Dot dot2;  /* second dot of a line */
+    /* legal lines are formed by dots in the same row, in adjacent columns,
+       or in the same column in adjacent rows */
+} DotLine;                      
+void InitDots(
+  short boardSize,    /* number of dots per row/col in board */
+  Boolean playFirst,
+    /* true if you play first, false of opponent plays first */
+  WindowPtr dotWindow
+    /* color window where you should draw game results */
+);
+void OpponentMove(
+  const DotLine opponentLine
+    /* line formed by your opponent on previous move */
+);
+short /* number of lines generated */ PlayDots(
+  DotLine yourLines[]  /* return the lines you form here */
+);
+void TermDots(void);  /* return any storage you allocated */
+
+Play begins with a call to your InitDots routine, where you are given the size of the game board (boardSize), an indicator of who plays first (playFirst), and a pointer to a CWindow (passed as a WindowPtr because that's what most toolbox routines expect). In that window, you will be required to display the progress of the game as it proceeds.
+When it is your turn to move, your PlayDots routine will be called. Your code should select the most advantageous move and return it in yourLines[0]. If that move forms a square, you can select an additional move, store it in yourLines[1], and continue as long as squares are formed. PlayDots should return the number of moves you made during your turn.
+After your opponent has played, your OpponentMove routine will be called one or more times, once for each move made by your opponent. The move will be provided in the opponentLine parameter, for use in display and in updating your data structures.
+After each of your moves, and after notification of each opponent move, you should display the move and the updated game state in the dotWindow. The window should also display the number of squares completed by each player. The details of the display are left to you, as long as the display is correct.
+When all of the squares have been formed, your TermDots routine will be called. You should deallocate any dynamically allocated memory and perform any other cleanup required.
+The winner will be determined by a round-robin or other fair tournament played with multiple board sizes. Scoring is based on minimizing your point total, calculated as the number of squares that your opponent occupies, plus a penalty of 1% for each millisecond your solution takes to execute.
+
+The Challenge prize will be divided between the overall winner and the best scoring entry from a contestant that has not won the Challenge recently.
+This will be a native PowerPC Challenge, using the CodeWarrior Pro 6 environment. Solutions may be coded in C, C++, or Pascal.
+
+
+Because of the test code delay, and the problem clarification in Q&A #1 below, I am extending the deadline by 1 week, to 8 June 2001.
+
+And now the Q&As:
+
+Q1: Game Rules
+The way I remember the game is that the current player MUST make another move when s/he has completed one or more squares. - unless the game is over.
+
+However, you say this is optional:
+
+  .... When a player
+ > completes one or more squares, s/he is entitled to make another move,
+ > and to continue making additional moves as long as a square is 
+ completed with each move.
+
+and
+
+ >  .... If that move forms a square, you can select an 
+ additional move, store it in yourLines[1], and continue as long as
+ squares are formed.
+
+This really makes for quite a different game.  Especially in the end
+game.  Without the mandatory extra move, the player who completes an
+island is not forced to give the opponent an opening - rather the
+opponent will have no choice but to play the first line in another
+island.  As a result the same player gets to complete all islands
+(enclosed areas).
+
+The problem statement is worded incorrectly.  You must make an additional move when you complete a square.  The problem should say:
+
+"... s/he must make another move and continue making additional moves ..."
+
+and
+
+"... you must make an additional move,..., and continue as long as ..."
+
+The deadline has been extended to accommodate anyone who was designing to the original wording.
+
+Q2:  The CWindow
+ >  .... The window should also display the number of squares 
+ completed by each player. The details of the display are left to you,
+ as long as the display is correct.
+
+I assume I can resize the window for my purposes; do not need to provide
+titles or menus or the like; and the testcode provides the nessary event
+handling, for example to redraw the window if it looses focus?  Does
+this mean the testcode keeps an offscreen copy of my window contents?
+
+The window will be preestablished for you and will be visible when you are first called.  The test code does not keep a cached copy of the window contents, so it will not handle update events.  The evaluation code will not cause update events to occur, although the test code (which lets you play against your solution) might do so.
+
+It would probably be best if you did not move or resize the window, as the windows for both players will be displayed, and resizing yours might interfere with the opponent's window.
+
+--
+-- Programmer's Challenge        -- Bob Boonstra
+   progchallenge@mactech.com        bobboonstra@earthlink.net
+   <http://www.mactech.com/>        <http://home.earthlink.net/~bobboonstra>
+

@@ -1,0 +1,4 @@
+# Visual C++ 6.0 can't load .dsp/.dsw project files with LF line endings,
+# so keep them as CRLF.
+*.dsp  text eol=crlf
+*.dsw  text eol=crlf

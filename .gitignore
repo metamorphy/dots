@@ -1,0 +1,15 @@
+/ignore/
+.DS_Store
+
+# Visual C++ 6.0 build output and per-user/IDE state
+Debug/
+*.ncb
+*.opt
+*.aps
+*.plg
+*.clw
+
+# Metrowerks CodeWarrior debug symbols and project data
+*.xSYM
+/mactech/DotsChallenge/DotsChallenge Data/
+/mactech/2001_06_TestCode/YourCode/Dots Data/
