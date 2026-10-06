@@ -1,6 +1,8 @@
 # Dots and Boxes
 
-A [Dots and Boxes](https://en.wikipedia.org/wiki/Dots_and_boxes) engine by Jeff Mallett, written in Lightspeed Pascal for the Macintosh in 1986 and ported to C++ in 2001, when it won the [MacTech Magazine](https://en.wikipedia.org/wiki/MacTech) Programmer's Challenge.
+A [Dots and Boxes](https://en.wikipedia.org/wiki/Dots_and_boxes) engine by Jeff Mallett, written in Lightspeed Pascal for the Macintosh in 1986 and ported to C++ in 2001.
+
+It won the [MacTech Magazine](https://en.wikipedia.org/wiki/MacTech) "Programmer's Challenge" for June 2001 (v.17 Issue 6) and was published in the September 2001 issue (v.17 Issue 9). 
 
 Players take turns drawing a line between two adjacent dots. Completing the fourth side of a box claims it and earns another turn, and the player with the most boxes wins.
 
